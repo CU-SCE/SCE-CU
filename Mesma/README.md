@@ -31,6 +31,11 @@ Ensure you have the following software and dependencies installed:
 2. Update the **AWS bucket input folder** containing the downloaded Sentinel images (this will match the prefix from the previous script).
 3. Set the **AWS bucket folder** for storing the preprocessed images.
 
+#### **3. "Running mesma_main.py"**
+ ```bash
+   python mesma_main.py spectral_library/38_output.sli Type "11_S_NT_2024_9_11.tif"
+   ```
+
 
 ---
 
