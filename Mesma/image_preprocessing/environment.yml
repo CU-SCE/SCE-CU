@@ -1,0 +1,17 @@
+name: preprocessing
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.9
+  
+  - pip:
+      - ipykernel
+      - jupyter_contrib_nbextensions 
+  
+  - botocore 
+  - boto3 
+  - numpy
+  - rasterio
+  - gdal

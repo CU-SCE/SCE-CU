@@ -1,0 +1,17 @@
+name: download_images
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.9
+  
+  - pip:
+      - ipykernel
+      - jupyter_contrib_nbextensions 
+  
+  - numpy 
+  - boto3 
+  - shapely
+  - geojson
+  - botocore
