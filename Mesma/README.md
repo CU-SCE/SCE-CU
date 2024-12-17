@@ -40,8 +40,8 @@ Ensure you have the following software and dependencies installed:
 
 3. **Clone the repository**:
    ```bash
-   git clone https://github.com/username/repository-name.git
-   cd repository-name
+   git clone https://github.com/viriglesias/SCE.git
+   cd SCE
    ```
 
 
