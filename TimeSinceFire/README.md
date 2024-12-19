@@ -1,6 +1,7 @@
 # Time Since Fire
 
-You will need python, jupyter notebook to run this. 
+You will need python, jupyter notebook to run this.   
+*You will need to create an accout with Google Earth Engine and create a project and get the project id.*  
 Unfortunately, running this code just through a plain python script will not give us the capabilities of rendering the map. Hence we must use jupyter notebooks.
 
 ## Steps to run this code
@@ -21,7 +22,7 @@ jupyter notebook
 ```
 In the last cell of the jupyter notebook make the necessary changes i.e
 ```
-initialize_ee - add the google earth engine project id
+initialize_ee - add the google earth engine project id here
 start_date - start date of our fire analysis
 end_date - end date of our fire analysis
 southern_california - specify the bounds of southern_california or any rectangle bounding box for that matter
@@ -30,3 +31,7 @@ palette - choose your colors for showing on the map
 ```
 
 Now just run all the cells. When you click on the colors, you will be able to see the date of fire (in epoch format) and the number of days before the end_date the fire occured.
+
+
+### Sample screenshot
+![screenhot](img.png)
