@@ -3,7 +3,7 @@ This repository contains two models designed for assessment of fuel conditions i
 
 ## Folder 1: **Days Since Last Fire Calculation**
 
-This model calculates the number of days since the most recent fire. The core functionality of this model is based on MODIS imagery data. The process involves:
+This model calculates the number of days since the most recent fire. The core functionality of this model is based on MODIS imagery data. 
 
 
 ## Folder 2: **MESMA**
