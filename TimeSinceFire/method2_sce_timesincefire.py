@@ -2,7 +2,7 @@ import ee
 import folium
 import datetime
 
-# Function to add Earth Engine layers to Folium maps
+# Define a function to add Earth Engine layers to Folium maps
 def folium_add_ee_layer(map_object, ee_image_object, vis_params, name):
     tile_url = ee.Image(ee_image_object).getMapId(vis_params)['tile_fetcher'].url_format
     folium.TileLayer(
@@ -13,7 +13,7 @@ def folium_add_ee_layer(map_object, ee_image_object, vis_params, name):
         control=True
     ).add_to(map_object)
 
-# Authenticate and initialize Google Earth Engine
+# Authenticate and initialize the Google Earth Engine API
 def initialize_ee(project_id):
     try:
         ee.Initialize(project=project_id)
@@ -21,12 +21,12 @@ def initialize_ee(project_id):
         ee.Authenticate()
         ee.Initialize(project=project_id)
 
-# Function to compute date ranges per year
+# Define a function to compute date ranges per year
 def compute_date_ranges(start_date, end_date):
     start = datetime.datetime.strptime(start_date, "%Y-%m-%d")
     end = datetime.datetime.strptime(end_date, "%Y-%m-%d")
 
-    # Generate the list of date ranges
+    # Generate a list of date ranges
     date_ranges = []
     current_year = start.year
 
@@ -38,13 +38,13 @@ def compute_date_ranges(start_date, end_date):
 
     return date_ranges
 
-# Function to calculate the number of days between two dates
+# Define a function to calculate the number of days between two dates
 def calculate_days(start_date, end_date):
     start = datetime.datetime.strptime(start_date, "%Y-%m-%d")
     end = datetime.datetime.strptime(end_date, "%Y-%m-%d")
     return (end - start).days
 
-# Function to process MODIS data and return the combined image
+# Define a function to process MODIS data and return a combined image
 def process_modis_data(start_date, end_date, southern_california):
     reference_date = datetime.datetime.strptime(end_date, "%Y-%m-%d")
     reference_date_millis = int(reference_date.timestamp() * 1000)
@@ -88,7 +88,7 @@ def process_modis_data(start_date, end_date, southern_california):
 
     return most_recent_burn.addBands(days_since_burn)
 
-# Function to visualize the processed data
+# Define a function to visualize the processed data
 def visualize_burn_map(combined_image, start_date, end_date, southern_california, palette, map_center):
     max_days = calculate_days(start_date, end_date)
     vis_params = {
@@ -110,7 +110,7 @@ def visualize_burn_map(combined_image, start_date, end_date, southern_california
     print(f"Map saved to {output_html}. Open this file in your browser to view the map.")
 
 
-########### Define values as per you needs ###########
+########### Define values according to your requirements ###########
 initialize_ee("test-09112024") #google earth engine project id
 start_date = "2000-01-01"
 end_date = "2024-09-30"
@@ -118,9 +118,9 @@ southern_california = ee.Geometry.BBox(-120.708008, 33.156797, -113.975687, 38.3
 palette = ['red', 'orange', 'yellow', 'green', 'blue', 'purple']
 map_center = [35.5688, -118.8678]
 
-########### End variable definitions ###########
+########### End of variable definitions ###########
 
 
-# Process data and visualize
+# Process the data and generate visualizations
 combined_image = process_modis_data(start_date, end_date, southern_california)
 visualize_burn_map(combined_image, start_date, end_date, southern_california, palette, map_center)
