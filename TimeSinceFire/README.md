@@ -1,19 +1,22 @@
 # Time Since Fire
 
-## Aim
-Through this code we aim to analyse a region on earth between a certain timeframe for the most recent occurences of fires. For example consider these values - start_date is 2000-01-01 and end_date is 2024-11-30 and the region of interest is Southern California. We want to analyze and visualize all the areas of Southern California for fire events during those years. We want to compute the exact date on which a recent fire was observed and the number of days since end_date a fire was seen back in time.
+---
 
-You will need python and jupyter notebook to run this.   
-*You will need to create an accout with Google Earth Engine, create a project and get the project id.*  
-Unfortunately, running this code just through a plain python script will not give us the capabilities of rendering the map. Hence we suggest using jupyter notebooks.
+## Requirements
 
-## Steps to run this code
+Ensure the following software and dependencies are installed:
 
-This code needs you to have an account with Google Earth Engine.    
-It will avoid the hassles of downloading the images on local and processing it.  
-Please setup the virtual env and install the dependencies, then run either of method 1 (preferred) or method 2.
+- **Python**: Version 3.10
+- **Pip**: Python package manager
+- **Git**: Version control system
+- **Google Earth Engine Account**: Required to access data directly and avoid downloading the entire MODIS dataset
 
-### Setup the virtual env
+---
+
+## Running the Code
+
+### 1. Setup the virtual environment and install the required dependencies
+
 ```sh
 cd TimeSinceFire
 python3 -m venv fire #create a python virtual environment
@@ -21,32 +24,49 @@ source fire/bin/activate
 pip3 install -r requirements.txt
 ```
 
-### Method 1 (Preferred) - Run the python notebook
-This method gives you an interactive map, that displays the latitude, longitude, date of fire in epoch format(most recent burn date) and the number of days before the end_date the fire occured (Days since Last Burn).
+### 2. Create a project on Google Earth Engine
+
+1. Create a project on Google Earth Engine
+2. Obtain the project ID
+
+### 3. Run the code
+
+Two methods are available, but only one is necessary. Execute the one that best suits your preferences or needs
+
+#### 3.1. Method 1 (Preferred) - Run the Jupyter Notebook
+
+This method generates an interactive map that shows the latitude, longitude, date of the last fire in epoch format (most recent burn date), and the number of days since the last fire occurred (Days Since Last Burn).
+
 ```sh
-jupyter notebook
+Jupyter Notebook
 #<open method1_sce_timesincefire.ipynb>
 ```
-It will ask you for authentication with your Google Account. Please complete that step.
+You will be prompted to authenticate with your Earth Engine Account. Please complete this step.
 
-In the last cell of the jupyter notebook make the necessary changes i.e
+In the last cell of the Jupyter Notebook, make the necessary changes:
 ```
-initialize_ee - add the google earth engine project id here
-start_date - start date of our fire analysis
-end_date - end date of our fire analysis
-southern_california - specify the bounds of southern_california or any rectangle bounding box for that matter
-center - just focuses the map on this coordinate
-palette - choose your colors for showing on the map
+initialize_ee - Add your Google Earth Engine project ID here.
+start_date - Set the start date for the analysis
+end_date - Set the end date for the analysis
+southern_california - Specify the bounds for Southern California or any rectangular bounding box
+center - Set the coordinates to focus the map on
+palette - Choose the colors to use for visualization on the map
 ```
 
-### Method 2 - Run the python script
-This code works similar to the the one present in the notebook, but this doesn't allow any interactions with the map. The output is stored as a southern_california_burn_map.html. You can just open this map on any browser by double clicking it.  
-This is helpful to just grasp an idea of the spread in fire dates across that region and guage how recent or old the fire was. You can change the values of the variables(same as the ones above) in the last part of the code.
+---
+
+#### 3.2. Method 2 - Run the Python script
+
+This code functions similarly to the one in the Jupyter Notebook, but it does not allow interaction with the map. The output is stored as a southern_california_burn_map.html file, which can be opened in any browser by double-clicking. 
+
 ```sh
-#assuming that you already have done the virtual env setup initially
+
 python3 method2_sce_timesincefire.py
-#this will generate southern_california_burn_map.html and you can open this file in a browser
+
 ```
 
-## Sample outputs
+___
+
+## Sample output
+
 ![method1_sce_timesincefire](SampleOutputs/Method1.png)
