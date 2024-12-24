@@ -14,7 +14,6 @@ Ensure the following software and dependencies are installed:
 
 ---
 
-
 ## Running the Code
 
 ### Running the Jupyter Notebooks
