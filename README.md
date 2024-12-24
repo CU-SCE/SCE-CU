@@ -17,13 +17,13 @@ This model downloads Sentinel satellite data for Southern California, preprocess
 1. Clone the Repository:
    
     ```bash
-    git clone https://github.com/your-repo-name.git
+    git clone https://github.com/viriglesias/SCE-CU.git
     ```
 
 2. Navigate to the Project Directory:
    
     ```bash
-    cd your-repo-name
+    cd SCE-CU
     ```
 
 3. Refer to Folder-Specific Instructions
