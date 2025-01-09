@@ -88,6 +88,8 @@ RUN conda install -c conda-forge \
 
 # Install and configure JupyterLab
 COPY jupyter_notebook_config.json /opt/conda/etc/jupyter/jupyter_notebook_config.json
+RUN mkdir -p /home/jovyan/.cache/conda && \
+chmod -R 777 /home/jovyan/.cache
 
 # Rebuild JupyterLab to include the new tools
 RUN jupyter lab build

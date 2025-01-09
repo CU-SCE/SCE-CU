@@ -72,6 +72,8 @@ RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2
 
 # Update the permissions for the /opt/conda directory
 RUN chown -R jovyan:users /opt/conda/share /usr/local/share /usr/local/bin/start-notebook.d 
+RUN mkdir -p /home/jovyan/.cache/conda && \
+chmod -R 777 /home/jovyan/.cache
 
 USER jovyan
 

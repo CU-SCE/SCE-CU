@@ -1,0 +1,10 @@
+{
+    "NotebookApp": {
+      "ip": "0.0.0.0",
+      "open_browser": false,
+      "port": 8888,
+      "allow_root": true,
+      "notebook_dir": "/workspace",
+      "token": ""
+    }
+  }
