@@ -1,0 +1,26 @@
+name: Download Sentinel-2 Images
+
+on:
+  workflow_dispatch:
+    inputs:
+      start_date:
+        description: 'Start date (YYYY-MM-DD)'
+        required: true
+      end_date:
+        description: 'End date (YYYY-MM-DD)'
+        required: true
+      mgrs_tiles:
+        description: 'Comma-separated MGRS tiles (e.g. 32TLM,33TWL)'
+        required: true
+
+jobs:
+  run-download:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run download stage on EC2
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: "host"
+          script: |
+
+            echo "${{ github.event.inputs.start_date }}" "${{ github.event.inputs.mgrs_tiles }}"
