@@ -1,0 +1,40 @@
+name: Download Sentinel-2 Images
+
+on:
+  workflow_dispatch:
+    inputs:
+      start_date:
+        description: 'Start date (YYYY-MM-DD)'
+        required: true
+      end_date:
+        description: 'End date (YYYY-MM-DD)'
+        required: true
+      tiles:
+        description: 'Comma-separated(no spaces) MGRS tiles (e.g. 32TLM,33TWL)'
+        required: true
+      s3_bucket":
+        description: 'Input S3 bucket (eg: sce.sentinel)'
+        required: true
+      s3_folder:
+        description: 'Input S3 folder (eg: 2024_input_dir)'
+        required: true
+
+jobs:
+  run-download:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run download stage on EC2
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            echo "▶️ Starting stage: Download Images"
+            echo ${{ secrets.EC2_HOST }}
+            if [ -z "${{ secrets.EC2_HOST }}" ]; then
+              echo "::error::❌ EC2_HOST is missing!"
+              exit 1
+            else
+              echo "::notice::✅ EC2_HOST is set"
+            fi

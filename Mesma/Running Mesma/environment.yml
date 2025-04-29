@@ -1,0 +1,20 @@
+name: earth-lab
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.9
+  
+  - pip:
+      - spectral-libraries 
+      - mesma
+      - ipykernel
+      - jupyter_contrib_nbextensions 
+  
+  - requests 
+  - chardet 
+  - numpy 
+  - gdal
+  - boto3 
+  - qgis
