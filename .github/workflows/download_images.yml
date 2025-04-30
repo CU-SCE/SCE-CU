@@ -30,14 +30,14 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            echo "▶️ Starting stage: Download Sentinel-2 Images"
+            echo "Starting stage: Download Sentinel-2 Images"
           
             # Check if EC2 Host is set (optional validation)
             if [ -z "${{ secrets.EC2_HOST }}" ]; then
-              echo "::error::❌ EC2_HOST is missing!"
+              echo "::error::EC2_HOST is missing!"
               exit 1
             else
-              echo "::notice::✅ EC2_HOST is set"
+              echo "::notice::EC2_HOST is set"
             fi
             
             # Now actually run docker command with input arguments
@@ -50,4 +50,13 @@ jobs:
               --input-bucket "${{ github.event.inputs.s3_bucket }}" \
               --input-folder "${{ github.event.inputs.s3_folder }}"
 
-            echo "::notice::✅ Download stage completed!"
+            echo "::notice::Download stage completed!"
+      - name: Clean up stopped containers
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            echo "Cleaning up stopped Docker containers"
+            docker container prune -f
