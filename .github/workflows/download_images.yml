@@ -43,7 +43,7 @@ jobs:
             # Now actually run docker command with input arguments
             #docker pull dakshasinghal1999/download_image  # optional: pull latest image
             
-            sudo docker run dakshasinghal1999/download_image download \
+            sudo docker run download_image download \
               --start-date "${{ github.event.inputs.start_date }}" \
               --end-date "${{ github.event.inputs.end_date }}" \
               --tiles "${{ github.event.inputs.tiles }}" \
