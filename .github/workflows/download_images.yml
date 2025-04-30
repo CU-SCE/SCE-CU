@@ -47,8 +47,8 @@ jobs:
               --start-date "${{ github.event.inputs.start_date }}" \
               --end-date "${{ github.event.inputs.end_date }}" \
               --tiles "${{ github.event.inputs.tiles }}" \
-              --input-bucket "${{ github.event.inputs.s3_bucket }}" \
-              --input-folder "${{ github.event.inputs.s3_folder }}"
+              --s3_bucket "${{ github.event.inputs.s3_bucket }}" \
+              --s3_folder "${{ github.event.inputs.s3_folder }}"
 
             echo "::notice::Download stage completed!"
       - name: Clean up stopped containers
