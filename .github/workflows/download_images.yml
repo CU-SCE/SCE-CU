@@ -48,7 +48,6 @@ jobs:
               --end-date "${{ github.event.inputs.end_date }}" \
               --tiles "${{ github.event.inputs.tiles }}" \
               --s3_bucket "sce.sentinel" \
-              # --s3_bucket "${{ github.event.inputs.s3_bucket }}" \
               --s3_folder "${{ github.event.inputs.s3_folder }}"
 
             echo "::notice::Download stage completed!"
