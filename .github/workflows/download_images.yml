@@ -12,7 +12,7 @@ on:
       tiles:
         description: 'Comma-separated(no spaces) MGRS tiles (e.g. 11SLT,11SMV)'
         required: true
-      s3_bucket":
+      s3_bucket:
         description: 'Input S3 bucket (eg: sce.sentinel2)'
         required: true
       s3_folder:
