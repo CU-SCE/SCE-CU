@@ -59,4 +59,4 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             echo "Cleaning up stopped Docker containers"
-            sudo docker container prune -f
+            #sudo docker container prune -f
