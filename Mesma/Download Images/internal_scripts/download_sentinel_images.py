@@ -200,7 +200,7 @@ def download(session, bounds: List[float], start_date: datetime, end_date: datet
             if '/preview/' in file_path:
                 continue
             new_file_path = file_path.replace('_qi_', '').replace('/', '_').replace('tiles_', '')
-            created_file_path = os.path.join("", new_file_path)
+            created_file_path = os.path.join("/tmp", new_file_path)
 
             if os.path.exists(created_file_path):
                 continue
