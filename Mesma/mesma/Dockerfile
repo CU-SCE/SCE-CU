@@ -117,14 +117,23 @@ RUN conda update -y conda && \
     conda config --remove channels conda-forge && \
     conda config --add channels conda-forge
 WORKDIR /workspace
-COPY environment.yml /workspace/ 
+COPY internal_scripts/environment.yml /workspace/ 
 RUN mamba env create -f /workspace/environment.yml
-RUN . /opt/conda/etc/profile.d/conda.sh && conda deactivate && conda activate earth-lab && python -m ipykernel install --name earth-lab
+COPY internal_scripts/run_mesma.py /workspace/
+COPY internal_scripts/entrypoint.py /workspace/
 
 COPY internal_scripts/core.py /home/user/anaconda3/envs/earth-lab/lib/python3.9/site-packages/mesma/hubdc/core.py
 COPY internal_scripts/operators.py /home/user/anaconda3/envs/earth-lab/lib/python3.9/site-packages/mesma/interfaces/operators.py
 COPY internal_scripts/writer.py /home/user/anaconda3/envs/earth-lab/lib/python3.9/site-packages/mesma/hubdc/writer.py
 
 
-RUN bash -c "source /opt/conda/etc/profile.d/conda.sh && conda activate earth-lab && conda install -c conda-forge qgis==3.30"
+
+# RUN . /opt/conda/etc/profile.d/conda.sh && conda deactivate && conda activate earth-lab && python -m ipykernel install --name earth-lab
+SHELL ["conda", "run", "-n", "earth-lab", "/bin/bash", "-c"]
+
+# Run this env by default
+ENTRYPOINT ["conda", "run", "--no-capture-output", "-n", "earth-lab", "python", "entrypoint.py"]
+
+
+# ENTRYPOINT ["python", "entrypoint.py"]
 
