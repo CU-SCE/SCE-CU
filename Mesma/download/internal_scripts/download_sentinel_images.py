@@ -32,7 +32,7 @@ def upload_file(file_name, bucket, object_name=None):
         object_name = os.path.basename(file_name)
 
     # Upload the file
-    s3_client = boto3.client('s3',**get_aws_creds())
+    s3_client = boto3.client('s3')
     try:
         response = s3_client.upload_file(file_name, bucket, object_name)
     except Exception as e:
@@ -152,7 +152,7 @@ def download_task(namespace: Namespace) -> None:
     """
 #     session = boto3.Session(profile_name=namespace.profile_name)
     session = boto3.Session()
-    s3 = session.client('s3',**get_aws_creds())
+    s3 = session.client('s3')
     s3.download_file(namespace.bucket_name, namespace.available_file,
                      namespace.dest,
                      ExtraArgs={'RequestPayer': 'requester'}
@@ -186,7 +186,7 @@ def download(session, bounds: List[float], start_date: datetime, end_date: datet
         bounds[2] += buffer
         bounds[3] += buffer
         
-    s3_client = session.client('s3',**get_aws_creds())
+    s3_client = session.client('s3')
     available_files = find_available_files(s3_client, bounds, start_date, end_date, bands,mgrs_grids)
     
     
