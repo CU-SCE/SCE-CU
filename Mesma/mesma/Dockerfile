@@ -119,20 +119,21 @@ RUN conda update -y conda && \
 WORKDIR /workspace
 COPY internal_scripts/environment.yml /workspace/ 
 RUN mamba env create -f /workspace/environment.yml
-COPY internal_scripts/run_mesma.py /workspace/
+COPY internal_scripts/build_mesma_images.py /workspace/
 COPY internal_scripts/entrypoint.py /workspace/
+COPY internal_scripts/spectral_library /workspace/library
 
-COPY internal_scripts/core.py /home/user/anaconda3/envs/earth-lab/lib/python3.9/site-packages/mesma/hubdc/core.py
-COPY internal_scripts/operators.py /home/user/anaconda3/envs/earth-lab/lib/python3.9/site-packages/mesma/interfaces/operators.py
-COPY internal_scripts/writer.py /home/user/anaconda3/envs/earth-lab/lib/python3.9/site-packages/mesma/hubdc/writer.py
+COPY internal_scripts/core.py /opt/conda/envs/mesma/lib/python3.9/site-packages/mesma/hubdc/core.py
+COPY internal_scripts/operators.py /opt/conda/envs/mesma/lib/python3.9/site-packages/mesma/interfaces/operators.py
+COPY internal_scripts/writer.py /opt/conda/envs/mesma/lib/python3.9/site-packages/mesma/hubdc/writer.py
 
-
+                                
 
 # RUN . /opt/conda/etc/profile.d/conda.sh && conda deactivate && conda activate earth-lab && python -m ipykernel install --name earth-lab
-SHELL ["conda", "run", "-n", "earth-lab", "/bin/bash", "-c"]
+SHELL ["conda", "run", "-n", "mesma", "/bin/bash", "-c"]
 
 # Run this env by default
-ENTRYPOINT ["conda", "run", "--no-capture-output", "-n", "earth-lab", "python", "entrypoint.py"]
+ENTRYPOINT ["conda", "run", "--no-capture-output", "-n", "mesma", "python", "entrypoint.py"]
 
 
 # ENTRYPOINT ["python", "entrypoint.py"]

@@ -1,5 +1,5 @@
 import sys
-from run_mesma import run_mesma
+from build_mesma_images import build
 import boto3
 from datetime import datetime
 import argparse
@@ -18,16 +18,18 @@ if __name__ == "__main__":
 
     s3_bucket = parser.parse_args().s3_bucket
     image_files = [file.strip() for file in parser.parse_args().image_files.split(",")]
-    s3_ouput_folder = parser.parse_args().s3_output_folder
+    s3_output_folder = parser.parse_args().s3_output_folder
 
     print("s3_bucket:", s3_bucket)
     print("image_files:", image_files)
-    print("s3_output_folder:", s3_ouput_folder)
+    print("s3_output_folder:", s3_output_folder)
 
-    run_mesma(
+    build(
         s3_bucket=s3_bucket,
+        # image_files=image_files,
         image_files=image_files,
-        s3_output_folder=s3_ouput_folder
+        s3_output_folder=s3_output_folder,
+        parser =parser
         )
 
  

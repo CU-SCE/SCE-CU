@@ -11,8 +11,6 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="MESMA Pipeline Entrypoint")
 
-    parser.add_argument("stage", choices=["download", "preprocess", "mesma"], help="Stage to run")
-    
     parser.add_argument("--start-date", type=str, help="Start date (YYYY-MM-DD)")
     parser.add_argument("--end-date", type=str, help="End date (YYYY-MM-DD)")
     parser.add_argument("--tiles", type=str, help="Comma-separated list of MGRS tiles")
@@ -31,18 +29,16 @@ if __name__ == "__main__":
     print("End date:", end_date)
     print("Tiles:", tiles_list)
     print("stage:", parser.parse_args().stage)
-    if parser.parse_args().stage == "download":
-        download(
-            session=session,
-            start_date=start_date,
-            end_date=end_date,
-            mgrs_grids = tiles_list,
-            bands=bands,
-            bounds=bounds,
-            s3_bucket=s3_bucket,
-            s3_folder=s3_folder
-            )
-    else:
-        raise ValueError("Unknown stage")
+    download(
+        session=session,
+        start_date=start_date,
+        end_date=end_date,
+        mgrs_grids = tiles_list,
+        bands=bands,
+        bounds=bounds,
+        s3_bucket=s3_bucket,
+        s3_folder=s3_folder
+        )
+
 
  
