@@ -40,7 +40,7 @@ jobs:
             sudo docker run mesma_image \
               --image_files "${{ github.event.inputs.image_files }}" \
               --s3_bucket "${{ github.event.inputs.s3_bucket }}" \
-              --s3_folder "${{ github.event.inputs.s3_folder }}"
+              --s3_output_folder "${{ github.event.inputs.s3_output_folder }}"
 
             echo "::notice::Download stage completed!"
       - name: Clean up stopped containers
