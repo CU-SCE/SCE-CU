@@ -1,4 +1,4 @@
-name: Download Sentinel-2 Images
+name: Generate Mesma Images
 
 on:
   workflow_dispatch:
@@ -14,17 +14,17 @@ on:
         required: true
 
 jobs:
-  run-download:
+  run-mesma:
     runs-on: ubuntu-latest
     steps:
-      - name: Run download stage on EC2
+      - name: Run mesma stage on EC2
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            echo "Starting stage: Download Sentinel-2 Images"
+            echo "Starting stage: Generate Mesma Images"
           
             # Check if EC2 Host is set (optional validation)
             if [ -z "${{ secrets.EC2_HOST }}" ]; then
