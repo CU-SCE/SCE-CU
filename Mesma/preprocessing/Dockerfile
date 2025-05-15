@@ -110,7 +110,7 @@ RUN mv saml2aws /usr/local/bin/ && \
 
 # Verify the installation
 RUN saml2aws --version
-
+RUN mkdir -p /workspace && chown -R jovyan:users /workspace
 USER jovyan
 
 # Build the Conda environment. Add any desired Conda packages to the environment.yml file located in the Dockerfiles directory
