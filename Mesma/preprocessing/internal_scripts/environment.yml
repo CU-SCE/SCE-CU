@@ -14,7 +14,7 @@ dependencies:
   - boto3 
   - numpy
   - rasterio
-  - gdal
+  - gdal==3.6.2
   - pip
   - pip:
       - botocore

@@ -81,21 +81,7 @@ def resample_bands(resampling_dir):
     if(band in bands_to_resample and ".jp2" in file):
       file_path  = resampling_dir + file
       print("Resampling", file_path)
-      print(os.path.isfile(file_path))
-      ds = gdal.Open('/workspace/input_dir/11_S_LT_2024_10_2_0_B05.jp2')
-      # print(ds)
-      output_path = file_path.replace(".tif", "_resampled.tif")
-      subprocess.run([
-          "gdalwarp",
-          "-tr", "10", "10",
-          file_path,
-          output_path
-      ], check=True)
-
-      # Replace original file
-      os.remove(file_path)
-      os.rename(output_path, file_path)
-      # gdal.Warp(file_path, file_path, xRes=10, yRes=10)
+      gdal.Warp(file_path, file_path, xRes=10, yRes=10)
 
 def read_jp2(image_path):
     with rasterio.open(image_path) as src:
