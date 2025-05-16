@@ -28,7 +28,6 @@ if __name__ == "__main__":
     print("Start date:", start_date)
     print("End date:", end_date)
     print("Tiles:", tiles_list)
-    print("stage:", parser.parse_args().stage)
     download(
         session=session,
         start_date=start_date,
