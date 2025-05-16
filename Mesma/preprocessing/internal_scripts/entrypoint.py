@@ -26,8 +26,6 @@ if __name__ == "__main__":
     print("s3_bucket:", s3_bucket)
     print("s3_input_folder:", s3_input_folder)
     print("s3_output_folder:", s3_ouput_folder)
-    print("stage:", parser.parse_args().stage)
-
     
 
     process_images(
