@@ -1,15 +1,42 @@
 #!/usr/bin/env python3
 """
-Batch MESMA runner with progress bars.
+run this:
 
-Example (single image):
-  PYTHONUNBUFFERED=1 conda run --no-capture-output -n mesma python run_mesma_batch.py \
-    --library internal_scripts/spectral_library/38_output.sli \
-    --class-name Type \
-    --image /tmp/mesma_test/10_S_EG_2024_10_30.tif
+cd ~/data-store/SCE-CU/Mesma/mesma
+conda env create -f internal_scripts/environment.yml
+conda env list
 
-Example (folder):
-  ... --image-dir /tmp/mesma_test
+cd ~/data-store/SCE-CU/Mesma/mesma
+
+ENV=/opt/conda/envs/mesma/lib/python3.9/site-packages/mesma
+cp internal_scripts/core.py "$ENV/hubdc/core.py"
+cp internal_scripts/operators.py "$ENV/interfaces/operators.py"
+cp internal_scripts/writer.py "$ENV/hubdc/writer.py"
+
+DATE=2026-10-16
+SRC=/data-store/iplant/home/samiksha23/SCE-CU/sentinel2_data/new_data/$DATE/preprocessed
+OUT=/data-store/iplant/home/samiksha23/SCE-CU/sentinel2_data/new_data/$DATE/mesma
+WORK=/tmp/mesma_$DATE
+
+mkdir -p "$WORK" "$OUT"
+cp -n "$SRC"/*.tif "$WORK"/
+
+PYTHONUNBUFFERED=1 conda run --no-capture-output -n mesma python run_mesma_batch.py \
+  --library internal_scripts/spectral_library/38_output.sli \
+  --class-name Type \
+  --image-dir "$WORK" \
+  --skip-existing
+
+shopt -s nullglob
+for f in "$WORK"/*_mesma*; do
+  base=$(basename "$f")
+  stem="${base%%_mesma*}"
+  mkdir -p "$OUT/$stem"
+  cp -v "$f" "$OUT/$stem/"
+done
+echo "Saved under $OUT"
+ls -1 "$OUT"
+
 """
 
 from __future__ import annotations
